@@ -18,8 +18,8 @@ const Download = () => {
 
     // Accumulate the offsetTop up the chain
     while (element) {
-      topPosition += element.offsetTop;
-      element = element.offsetParent;
+      topPosition += (element as HTMLElement).offsetTop;
+      element = (element as HTMLElement).offsetParent;
     }
     console.log('Position from top:', topPosition);
 
