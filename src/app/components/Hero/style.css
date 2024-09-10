@@ -1,0 +1,62 @@
+.makeEffectIntoLeftText {
+    animation: slide-in 1.2s ease-in;
+}
+
+.makeEffectIntoRightText {
+    animation: slide-in-for-Right 1.2s ease-in;
+}
+
+/* 
+.effectInImage {
+    animation: comesfrom-down 2s ease-in
+}
+
+
+@keyframes comesfrom-down {
+    0% {
+        top: 50%;
+        
+    }
+
+    30% {
+        top: 40%;
+    }
+
+    60% {
+        top: 25%;
+    }
+
+    80% {
+        top: 15%;
+    }
+
+    100% {
+        top: 6%;
+    }
+} */
+
+
+
+@keyframes slide-in {
+    0% {
+        transform: rotate3d(100, 0, 0, 60deg) translate(-10px, -30px);
+        font-size: 16vw;
+    }
+
+    100% {
+        transform: rotate3d(0, 0, 0, 0deg);
+        font-size: 14vw;
+    }
+}
+
+@keyframes slide-in-for-Right {
+    0% {
+        transform: rotate3d(100, 0, 0, 60deg) translate(10px, -30px);
+        font-size: 16vw;
+    }
+
+    100% {
+        transform: rotate3d(0, 0, 0, 0deg);
+        font-size: 14vw;
+    }
+}
