@@ -1,10 +1,66 @@
 'use client'
-
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react';
+import "./style.css";
+import { isMobile } from 'react-device-detect';
 
 const SignUp = () => {
   const [cardStyle, setCardStyle] = useState({});
   const containerRef = useRef(null);
+
+  //move mobile image by scrolling.............
+  useEffect(() => {
+    const scrollableDiv = document.getElementById("sign-up");
+    let topPosition = 0;
+    let element = scrollableDiv;
+
+    // Accumulate the offsetTop up the chain
+    while (element) {
+      topPosition += element.offsetTop;
+      element = element.offsetParent;
+    }
+
+    window.addEventListener("scroll", function () {
+      let offset = window.pageYOffset;
+      if (isMobile) {
+        if (offset >= (topPosition + 350)) {
+          document.getElementById("card-1-img")?.classList.add("come-out-from-top");
+          document.getElementById("card-1-text")?.classList.add("come-out-from-down");
+          document.getElementById("card-1-text2")?.classList.add("come-out-from-down");
+          //card-2..
+          document.getElementById("card-2-img")?.classList.add("come-out-from-down");
+          document.getElementById("card-2-text")?.classList.add("come-out-from-top");
+          document.getElementById("card-2-text2")?.classList.add("come-out-from-top");
+          //card-4..
+          document.getElementById("card-4-img")?.classList.add("come-out-from-down");
+          document.getElementById("card-4-text")?.classList.add("come-out-from-top");
+          document.getElementById("card-4-text2")?.classList.add("come-out-from-top");
+        }
+      } else {
+        if (offset >= (topPosition + 280)) {
+          //card-1
+          document.getElementById("card-1-img")?.classList.add("come-out-from-top");
+          document.getElementById("card-1-text")?.classList.add("come-out-from-down");
+          document.getElementById("card-1-text2")?.classList.add("come-out-from-down");
+          //card-2..
+          document.getElementById("card-2-img")?.classList.add("come-out-from-down");
+          document.getElementById("card-2-text")?.classList.add("come-out-from-top");
+          document.getElementById("card-2-text2")?.classList.add("come-out-from-top");
+          //card-4..
+          document.getElementById("card-4-img")?.classList.add("come-out-from-down");
+          document.getElementById("card-4-text")?.classList.add("come-out-from-top");
+          document.getElementById("card-4-text2")?.classList.add("come-out-from-top");
+
+        }
+      }
+
+    });
+
+  }, [])
+
+
+
+
+  //for move the B element of the box.....
   useEffect(() => {
     const container = containerRef.current;
 
@@ -12,7 +68,7 @@ const SignUp = () => {
       const rect = element.getBoundingClientRect();
       const x = e.clientX - rect.left; // Mouse X relative to the element
       const y = e.clientY - rect.top;  // Mouse Y relative to the element
-      const middleX = rect.width / 2;
+      const middleX = rect.width / 2;  // Center of the element
       const middleY = rect.height / 2;
 
       const deltaX = x - middleX;
@@ -24,34 +80,22 @@ const SignUp = () => {
     const handleMouseMove = (e) => {
       const { deltaX, deltaY } = getMouseDirection(e, container);
 
-      let rotateY = 0;
-      let rotateX = 0;
-
-      if (deltaX > 0) {
-        rotateY = -20;  // Rotate to the left
-      } else {
-        rotateY = 20;   // Rotate to the right
-      }
-
-      if (deltaY > 0) {
-        rotateX = 20;   // Rotate downwards
-      } else {
-        rotateX = -20;  // Rotate upwards
-      }
+      // Adjust rotation based on mouse position
+      const rotateY = (-deltaX / 4).toFixed(2);  // Adjust sensitivity
+      const rotateX = (deltaY / 4).toFixed(2);
 
       setCardStyle({
         transform: `rotateY(${-rotateY}deg) rotateX(${-rotateX}deg)`,
-        width: '100%',
-        height: '100%',
-        transition: 'transform 0.8s ease',
+        transition: 'transform 0.2s ease',
         transformStyle: 'preserve-3d',
       });
     };
 
     const handleMouseLeave = () => {
       setCardStyle({
-        ...cardStyle,
         transform: 'rotateY(0deg) rotateX(0deg)',
+        transition: 'transform 0.5s ease',
+        transformStyle: 'preserve-3d',
       });
     };
 
@@ -62,9 +106,7 @@ const SignUp = () => {
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [cardStyle]);
-
-
+  }, [cardStyle]);  // Empty dependency array
 
 
   return (
@@ -91,9 +133,9 @@ const SignUp = () => {
             <div className="cards-grid">
 
 
-              <div id="w-node-fc8765e5-00fe-9e2a-d8f7-edcc2476991c-5ffe7f77" data-w-id="fc8765e5-00fe-9e2a-d8f7-edcc2476991c" className="card-background">
-                <div className="card-container">
-                  <div className="card-image-holder _01">
+              <div id="w-node-fc8765e5-00fe-9e2a-d8f7-edcc2476991c-5ffe7f77" data-w-id="fc8765e5-00fe-9e2a-d8f7-edcc2476991c" className="card-background border-1 border-gray-400">
+                <div className="card-container transition-all duration-500 ease-in-out" >
+                  <div className="card-image-holder _01 " id='card-1-img'>
                     <img
                       src="https://assets.website-files.com/63aee5793ca698452efe7f60/63b58b976afec602a1eb0d9e_First%20Card%20Image.svg"
                       loading="eager"
@@ -102,8 +144,8 @@ const SignUp = () => {
                     />
                   </div>
                   <div className="card-text-holder">
-                    <div className="card-title black-text">Integrations</div>
-                    <div className="experience-paragraph-holder">
+                    <div className="card-title black-text " id='card-1-text'>Integrations</div>
+                    <div className="experience-paragraph-holder " id='card-1-text2'>
                       <p className="black-text">Allows the user to track time on the go,</p>
                     </div>
                   </div>
@@ -114,14 +156,14 @@ const SignUp = () => {
               <div id="w-node-eb39f325-8859-6038-bc3c-ab144f9640eb-5ffe7f77" className="two-cards-holder">
 
                 <div data-w-id="be56302e-1fa4-fbab-bfdf-1115daa8830e" className="card-background">
-                  <div className="card-container _02">
+                  <div className="card-container _02 transition-all duration-500 ease-in-out">
                     <div className="card-text-holder _02">
-                      <div className="card-title black-text">Automatic tracking</div>
-                      <div className="experience-paragraph-holder _02">
+                      <div className="card-title black-text " id='card-2-text'>Automatic tracking</div>
+                      <div className="experience-paragraph-holder _02 " id='card-2-text2'>
                         <p className="black-text">Automatically track the amount of time spent on different tasks</p>
                       </div>
                     </div>
-                    <div className="card-image-holder _02">
+                    <div className="card-image-holder _02 " id='card-2-img'>
                       <img
                         src="https://assets.website-files.com/63aee5793ca698452efe7f60/63b5911e1b38e6b13be1acc8_Second%20Card%20Image.svg"
                         loading="lazy"
@@ -133,18 +175,19 @@ const SignUp = () => {
                 </div>
 
 
-                <div data-w-id="747e597c-b48f-be9e-1070-ea3f40f0f06a" className="card-logo-holder">
+                <div data-w-id="747e597c-b48f-be9e-1070-ea3f40f0f06a" className="card-logo-holder cursor-pointer">
 
 
                   <div data-w-id="e24e52c4-7e25-85b9-f3af-94bdde39da9b" className="card-logo-wrapper"
-                    ref={containerRef} style={{ perspective: '1600px' }}
+                    ref={containerRef} style={{ perspective: '1000px' }}
                   >
-                    <div className="card-logo-container" style={cardStyle}>
+                    <div className="card-logo-container transition-all duration-500 ease-in-out" style={cardStyle}>
                       <img
                         src="https://assets.website-files.com/63aee5793ca698452efe7f60/63b5927955c4817e14c6df3e_Black%20Logo%20Solo.svg"
                         loading="lazy"
                         alt=""
                         className="card-logo"
+                        style={{ transform: "translateZ(27px)" }}
                       />
                     </div>
                   </div>
@@ -169,13 +212,13 @@ const SignUp = () => {
               <div id="w-node-_5ab5adbc-57c9-c9b0-3c74-19cd092f35c9-5ffe7f77" data-w-id="5ab5adbc-57c9-c9b0-3c74-19cd092f35c9" className="card-background">
                 <div className="card-container">
                   <div className="card-text-holder">
-                    <div className="card-title black-text">Reports</div>
-                    <div className="experience-paragraph-holder">
+                    <div className="card-title black-text  transition-all duration-500 ease-in-out" id='card-4-text'>Reports</div>
+                    <div className="experience-paragraph-holder transition-all duration-500 ease-in-out " id='card-4-text2'>
                       <p className="black-text">The app generates detailed reports.</p>
                     </div>
                   </div>
-                  <div className="card-iphone-holder">
-                    <div className="iphone-card">
+                  <div className="card-iphone-holder transition-all duration-500 ease-in-out">
+                    <div className="iphone-card " id='card-4-img'>
                       <img
                         src="https://assets.website-files.com/63aee5793ca698452efe7f60/63aefb47917c0cfa0943fc97_iPhone%2014%20Pro%20%E2%80%93%20Space%20Black.webp"
                         loading="lazy"

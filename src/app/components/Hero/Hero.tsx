@@ -12,20 +12,27 @@ const Hero = () => {
   const textRef = useRef(null);
   const imagemove = useRef(null)
 
+
+  //make effects in mobile image & texts ...
   React.useEffect(() => {
-    document.getElementById("makeEffectIntoLeftText")?.classList.add("makeEffectIntoLeftText");
-    document.getElementById("makeEffectIntoRightText")?.classList.add("makeEffectIntoRightText");
+    document.getElementById("makeEffectInto-left-Text")?.classList.add("makeEffectIntoText");
+    document.getElementById("makeEffectInto-right-Text")?.classList.add("makeEffectIntoText-2");
 
     setTimeout(() => {
-      if (isMobile) {
-        window.scrollTo(0, 460);
-      } else {
-        window.scrollTo(0, 660);
-      }
-      document.getElementById("imageId-forRemove-hiddhen")?.classList.remove("hidden")
-    }, 1500);
+      let textfontSize = document.getElementById("meedtextone");
+      let textfontSize2 = document.getElementById("meedtextone2")
+      textfontSize.style.fontSize = "14vw";
+      textfontSize2.style.fontSize = "14vw"
+      document.getElementById("imageId-forRemove-hiddhen")?.classList.remove("hidden");
+      document.getElementById("imageId-forRemove-hiddhen2")?.classList.remove("hidden")
+      document.getElementById("hiddenImageComesFromDown")?.classList.add("imageId-forRemove-hiddhenmain")
+    }, 1200);
   }, [])
 
+
+
+
+//for effecting in mobile & background-text in mouse move
   useEffect(() => {
     const container = containerRef.current;
     const text = textRef.current;
@@ -43,15 +50,18 @@ const Hero = () => {
         const deltaX = getMouseDirection(e, container);
         // Move text left or right based on mouse movement
         // alert(deltaX / 13)
+        console.log(deltaX);
+
         if (text) {
+          container.style.transition = "all 0.9s ease-in"
           text.style.position = 'absolute';
-          text.style.top = '70%';
+          text.style.top = '70.5%';
           text.style.left = '50%';
           imageMove.style.position = 'absolute';
-          imageMove.style.top = '70%';
+          imageMove.style.top = '71%';
           imageMove.style.left = '50%';
-          text.style.transform = `translate(-50%, -50%) translateX(${-(deltaX / 20)}px)`; // Adjust movement strength as needed
-          imageMove.style.transform = `translate(-50%, -50%) translateX(${deltaX / 20}px)`;
+          text.style.transform = `translate(-50%, -50%) translateX(${-(deltaX / 40)}px)`; // Adjust movement strength as needed
+          imageMove.style.transform = `translate(-50%, -50%) translateX(${deltaX / 40}px)`;
         }
       }
 
@@ -60,6 +70,7 @@ const Hero = () => {
         if (text) {
           text.style.transform = `translate(-50%, -50%)`;
           imageMove.style.transform = `translate(-50%, -50%)`;
+          container.style.transition = "all 0.9s ease-out"
         }
       }
 
@@ -70,66 +81,37 @@ const Hero = () => {
         container.removeEventListener('mousemove', handleMouseMove);
         container.removeEventListener('mouseleave', handleMouseLeave);
       };
-    }, 1800);
+    }, 3300);
   }, []);
 
 
 
-
-
-
-
-
-
-
-
-
-  // Function to handle the event
-  function handleEvent(e) {
-    var x = e.clientX;
-    var y = e.clientY;
-    var newposX = x - 60;
-    var newposY = y - 60;
-
-    var circles = document.querySelectorAll(".circle");
-    let transformatedText = document.getElementById("transformatedText");
-    let imageTransform = document.getElementById("imageTransform")
-
-    transformatedText.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-    text.style.transform = `translate(${textMoveX}px, ${textMoveY}px)`;
-
-
-    // circles.forEach(function (circle) {
-    //   circle.style.transform = `translate3d(${newposX}px, ${newposY}px, 0px)`;
-    // });
-  }
-
-
-
   return (
-    <section data-w-id="bbb1681c-62a0-7375-a529-1c7bec5a4a0e" className="section  pt-[30px] ease-in" ref={containerRef}>
+    <section data-w-id="bbb1681c-62a0-7375-a529-1c7bec5a4a0e" className="section  pt-[30px]" ref={containerRef}
+      style={{ transition: "all 0.8 ease-in-out" }}
+    >
 
       <div className='container no-paddings ' id='container'>
 
         <div className='hero-section'>
-          <div className="hero-section-text-holder">
+          <div className="hero-section-text-holder transition-all ease-in-out duration-500">
             <div className="hero-section-sticky" >
               <div className="hero-sticky-holder" id='transformatedText'>
-                <div className="hero-text-holder" ref={textRef}>
-                  <div className="hero-text-wrapper _01  ">
-                    <div className="hero-text" id='makeEffectIntoLeftText'>Meet</div>
-                    <div className="hero-text-blur" id='makeEffectIntoLeftText'>Meet</div>
+                <div className="hero-text-holder" ref={textRef} >
+                  <div className="hero-text-wrapper _01" id='makeEffectInto-left-Text'>
+                    <div className="hero-text transition-all ease-in-out duration-500" id="meedtextone">Meet</div>
+                    <div className="hero-text-blur">Meet</div>
                   </div>
-                  <div className="hero-text-wrapper _02 ">
-                    <div className="hero-text _02 " id='makeEffectIntoRightText'>Black</div>
-                    <div className="hero-text-blur " id='makeEffectIntoRightText'>Black</div>
+                  <div className="hero-text-wrapper _02" id='makeEffectInto-right-Text'>
+                    <div className="hero-text _02  transition-all ease-in-out duration-500" id="meedtextone2">Black</div>
+                    <div className="hero-text-blur ">Black</div>
                   </div>
                 </div>
               </div>
 
             </div>
 
-            <div className="iphone-holder" ref={imagemove}>
+            <div className="iphone-holder" id='hiddenImageComesFromDown' ref={imagemove}>
               <img
                 src="https://assets.website-files.com/63aee5793ca698452efe7f60/63aefb47917c0cfa0943fc97_iPhone%2014%20Pro%20%E2%80%93%20Space%20Black.webp"
                 loading="lazy"
@@ -146,7 +128,8 @@ const Hero = () => {
                   alt=""
                   sizes="(max-width: 479px) 80vw, 267.875px"
                   srcSet="https://assets.website-files.com/63aee5793ca698452efe7f60/63aefd2632bfdbf4073fa431_Hero%20Iphone%20Image-p-500.webp 500w, https://assets.website-files.com/63aee5793ca698452efe7f60/63aefd2632bfdbf4073fa431_Hero%20Iphone%20Image.webp 729w"
-                  className="iphone-screen-image"
+                  className="iphone-screen-image hidden"
+                  id='imageId-forRemove-hiddhen2'
                 />
               </div>
               <div className="iphone-drop-shadow"></div>

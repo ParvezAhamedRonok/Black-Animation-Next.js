@@ -1,41 +1,22 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./style.css";
 import { isMobile } from 'react-device-detect';
-import { usePathname } from 'next/navigation';
-
-
 
 const Header = () => {
-   let makePatheName = usePathname();
    const [openMobileNavbar, setopenMobileNavBar] = useState(false)
-   console.log(makePatheName)
+   const [ActiveColor, setActiveColor] = useState('Features');
 
-   let styleNav = {
-      transition: 'all 500ms', // Apply transition to all properties, specifying duration
-      transform: 'translateY(0px) translateX(0px)' // Set the initial transform
-   }
-   let onClickNav = {
-      width: "350px",
-      height: "11472px",
-      display: "block",
+   useEffect(() => {
+      setTimeout(() => {
+         document.getElementById("main-Id-For-Header")?.classList.remove("hidden")
+      }, 1600);
+   }, []);
 
-   }
-   const style = {
-      WebkitUserSelect: 'text', // Use camelCase for WebKit-prefixed properties
-      userSelect: 'text' // Standard property for non-prefixed version
-   };
-
-   // const smootFunction = (event) => {
-   //    const section = document.getElementById(event);
-   //    if (section) {
-   //       section.scrollIntoView({ behavior: 'smooth' });
-   //    }
-   // }
 
 
    return (
-      <header className='fixed top-[2px] left-0 right-0 m-auto z-[100000000]'>
+      <header className='fixed top-[2px] left-0 right-0 m-auto z-[100000000] hidden transition-all ease-in-out duration-200' id='main-Id-For-Header'>
          <div data-animation="default" className="navbar w-nav" data-easing2="ease" data-easing="ease" data-collapse="medium" role="banner" data-no-scroll="1" data-duration="500" data-doc-height="1">
             <div className="container nav-container">
                <div className="nav-menu-container">
@@ -51,36 +32,44 @@ const Header = () => {
                   <nav role="navigation" className="nav-menu w-nav-menu">
                      <div className="nav-link">
                         <div className="nav-link-active-holder">
-                           <a href="/#experince" className="nav-link-holder w-inline-block"  >
-                              <div className="nav-link-text-holder">
+                           <a href="/#experince" className={`nav-link-holder w-inline-block ${ActiveColor == "Experience" && "w--current "}`} >
+                              <div className="nav-link-text-holder"
+                                 onClick={() => { setActiveColor("Experience") }}
+                              >
                                  <div className="nav-link-text">Experience</div>
                               </div>
                            </a>
-                           <a href="" className="cricle-active-holder w-inline-block"></a>
+                           <a href="#/Experience" className={`cricle-active-holder w-inline-block ${ActiveColor == "Experience" && "w--current "}`}></a>
                         </div>
                         <div className="nav-link-active-holder">
-                           <a href="/#integration" className="nav-link-holder w-inline-block">
-                              <div className="nav-link-text-holder">
+                           <a href="/#integration" className={`nav-link-holder w-inline-block ${ActiveColor == "Integration" && "w--current "}`}>
+                              <div className="nav-link-text-holder"
+                                 onClick={() => { setActiveColor("Integration") }}
+                              >
                                  <div className="nav-link-text">Integration</div>
                               </div>
                            </a>
-                           <a href="/#integration" className="cricle-active-holder w-inline-block"></a>
+                           <a href="/#integration" className={`cricle-active-holder w-inline-block ${ActiveColor == "Integration" && "w--current "}`}></a>
                         </div>
                         <div className="nav-link-active-holder">
-                           <a href="/#features" className="nav-link-holder w-inline-block w--current">
-                              <div className="nav-link-text-holder">
+                           <a href="/#features" className={`nav-link-holder w-inline-block ${ActiveColor == "Features" && "w--current "}`}>
+                              <div className="nav-link-text-holder"
+                                 onClick={() => { setActiveColor("Features") }}
+                              >
                                  <div className="nav-link-text">Features</div>
                               </div>
                            </a>
-                           <a href="/#features" className="cricle-active-holder w-inline-block w--current"></a>
+                           <a href="/#features" className={`cricle-active-holder w-inline-block ${ActiveColor == "Features" && "w--current "}`}></a>
                         </div>
                         <div className="nav-link-active-holder">
-                           <a href="/#download" className="nav-link-holder w-inline-block">
-                              <div className="nav-link-text-holder">
+                           <a href="/#download" className={`nav-link-holder w-inline-block ${ActiveColor == "Download" && "w--current "}`}>
+                              <div className="nav-link-text-holder"
+                                 onClick={() => { setActiveColor("Download") }}
+                              >
                                  <div className="nav-link-text">Download</div>
                               </div>
                            </a>
-                           <a href="/#download" className="cricle-active-holder w-inline-block"></a>
+                           <a href="/#download" className={`cricle-active-holder w-inline-block ${ActiveColor == "Download" && "w--current "}`}></a>
                         </div>
                      </div>
                      <div className="nav-button-holder">
@@ -106,36 +95,44 @@ const Header = () => {
                      <nav role="navigation" className="nav-menu w-nav-menu bg-white translate-y-[-12px] justify-center align-middle" style={{ scrollBehavior: "smooth" }}>
                         <div className="nav-link">
                            <div className="nav-link-active-holder">
-                              <a href="/#experince" className="nav-link-holder w-inline-block">
-                                 <div className="nav-link-text-holder">
+                              <a href="/#experince" className={`nav-link-holder w-inline-block ${ActiveColor == "Experience" && "w--current "}`}>
+                                 <div className="nav-link-text-holder"
+                                    onClick={() => { setActiveColor("Experience") }}
+                                 >
                                     <div className="nav-link-text">Experience</div>
                                  </div>
                               </a>
-                              <a href="/#experince" className="cricle-active-holder w-inline-block"></a>
+                              <a href="/#experince" className={`cricle-active-holder w-inline-block ${ActiveColor == "Experience" && "w--current "}`}></a>
                            </div>
                            <div className="nav-link-active-holder">
-                              <a href="/#integration" className="nav-link-holder w-inline-block">
-                                 <div className="nav-link-text-holder">
+                              <a href="/#integration" className={`nav-link-holder w-inline-block ${ActiveColor == "Integration" && "w--current "}`}>
+                                 <div className="nav-link-text-holder"
+                                    onClick={() => { setActiveColor("Integration") }}
+                                 >
                                     <div className="nav-link-text">Integration</div>
                                  </div>
                               </a>
-                              <a href="/#integration" className="cricle-active-holder w-inline-block"></a>
+                              <a href="/#integration" className={`cricle-active-holder w-inline-block ${ActiveColor == "Integration" && "w--current "}`}></a>
                            </div>
                            <div className="nav-link-active-holder">
-                              <a href="/#features" className="nav-link-holder w-inline-block w--current">
-                                 <div className="nav-link-text-holder">
+                              <a href="/#features" className={`nav-link-holder w-inline-block ${ActiveColor == "Features" && "w--current "}`}>
+                                 <div className="nav-link-text-holder"
+                                    onClick={() => { setActiveColor("Features") }}
+                                 >
                                     <div className="nav-link-text">Features</div>
                                  </div>
                               </a>
-                              <a href="/#features" className="cricle-active-holder w-inline-block w--current"></a>
+                              <a href="/#features" className={`cricle-active-holder w-inline-block ${ActiveColor == "Features" && "w--current "}`}></a>
                            </div>
                            <div className="nav-link-active-holder">
-                              <a href="/#download" className="nav-link-holder w-inline-block">
-                                 <div className="nav-link-text-holder">
+                              <a href="/#download" className={`nav-link-holder w-inline-block ${ActiveColor == "Download" && "w--current "}`}>
+                                 <div className="nav-link-text-holder"
+                                    onClick={() => { setActiveColor("Download") }}
+                                 >
                                     <div className="nav-link-text">Download</div>
                                  </div>
                               </a>
-                              <a href="/#download" className="cricle-active-holder w-inline-block"></a>
+                              <a href="/#download" className={`cricle-active-holder w-inline-block ${ActiveColor == "Download" && "w--current "}`}></a>
                            </div>
                            <div className="nav-button-holder">
                               <a href="/#sign-up" className="button navbar-button w-button">Sign up</a>

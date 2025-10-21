@@ -1,62 +1,83 @@
-.makeEffectIntoLeftText {
-    animation: slide-in 1.2s ease-in;
+.makeEffectIntoText {
+    animation: slide-in .4s ease-in;
 }
 
-.makeEffectIntoRightText {
-    animation: slide-in-for-Right 1.2s ease-in;
+.makeEffectIntoText-2 {
+    animation: slide-in-right .8s ease-in;
 }
 
-/* 
-.effectInImage {
-    animation: comesfrom-down 2s ease-in
+.imageId-forRemove-hiddhenmain {
+    /* opacity: 0.1; */
+    animation: comesImageANimation .4s ease-in;
 }
 
 
-@keyframes comesfrom-down {
+/* animations.... */
+
+@keyframes comesImageANimation {
     0% {
-        top: 50%;
-        
-    }
+        transform: translateY(900px);
 
-    30% {
-        top: 40%;
-    }
-
-    60% {
-        top: 25%;
-    }
-
-    80% {
-        top: 15%;
     }
 
     100% {
-        top: 6%;
+        transform: translateY(0px);
     }
-} */
+}
 
 
 
 @keyframes slide-in {
     0% {
-        transform: rotate3d(100, 0, 0, 60deg) translate(-10px, -30px);
-        font-size: 16vw;
+        transform: perspective(1000px) rotateX(70deg);
+
     }
 
     100% {
-        transform: rotate3d(0, 0, 0, 0deg);
-        font-size: 14vw;
+        transform: perspective(1000px) rotateX(0);
+
     }
 }
 
-@keyframes slide-in-for-Right {
+@keyframes slide-in-right {
     0% {
-        transform: rotate3d(100, 0, 0, 60deg) translate(10px, -30px);
-        font-size: 16vw;
+        transform: perspective(1000px) rotateX(90deg);
+
+    }
+
+    10% {
+        transform: perspective(1000px) rotateX(90deg);
+
+    }
+
+    20% {
+        transform: perspective(1000px) rotateX(90deg);
+
+    }
+    30% {
+        transform: perspective(1000px) rotateX(90deg);
+
+    }
+    40% {
+        transform: perspective(1000px) rotateX(90deg);
+
+    }
+
+    50% {
+        transform: perspective(1000px) rotateX(90deg);
+
+    }
+    70% {
+        transform: perspective(1000px) rotateX(90deg);
+
+    }
+    90% {
+        transform: perspective(1000px) rotateX(50deg);
+
     }
 
     100% {
-        transform: rotate3d(0, 0, 0, 0deg);
-        font-size: 14vw;
+        transform: perspective(1000px) rotateX(0);
+
     }
 }

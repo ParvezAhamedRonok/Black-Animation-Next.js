@@ -9,7 +9,7 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-family: sans-serif;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -3098,7 +3098,7 @@ figcaption {
   background-image: linear-gradient(to right, #eec5bd, #f3b1a5 35%, #c6caf6 72%, #dad9e9);
   -webkit-background-clip: text;
   background-clip: text;
-  font-size: 14vw;
+  font-size: 16vw;
   font-weight: 800;
 }
 
@@ -3205,7 +3205,7 @@ figcaption {
 
 .hero-text-holder {
   grid-column-gap: 60px;
-  perspective: 1000px;
+  // perspective: 1000px;
   white-space: nowrap;
   flex-direction: row;
   justify-content: center;
@@ -4271,23 +4271,22 @@ figcaption {
 }
 
 .light-wrapper-in-front {
-  z-index: 6;
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-  justify-content: center;
-  align-items: center;
-  display: none;
+  z-index: 4;
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
 }
 
-.light-outside {
-  width: 200px;
-  height: 200px;
-  opacity: .1;
-  filter: blur(70px);
-  background-color: #fff;
-}
+// .light-outside {
+//   width: 200px;
+//   height: 200px;
+//   opacity: .1;
+//   filter: blur(70px);
+//   background-color: #fff;
+// }
 
 .error-message {
   text-align: center;

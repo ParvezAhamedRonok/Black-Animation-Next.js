@@ -5,6 +5,7 @@ const nextConfig = {
             'cdn.prod.website-files.com',
             'images.unsplash.com',
             'assets.website-files.com',
+            'th.bing.com',
         ], // Allow 'randomuser.me' and 'images.unsplash.com' for next/image
     },
     webpack: (config, { isServer }) => {

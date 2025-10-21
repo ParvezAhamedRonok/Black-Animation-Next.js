@@ -15,3 +15,7 @@
   font-size: 20px;
 }
 
+/* code for making mobile hand view */
+.shadowMobileView {
+  background: rgba(255, 255, 255, 0.09);
+}
